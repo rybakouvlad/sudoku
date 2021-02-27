@@ -1,0 +1,42 @@
+$border-color: #1b3865;
+
+body {
+  background-color: #d99886;
+}
+
+.form {
+  flex-grow: 0;
+  padding: 0;
+  input {
+    width: 30px;
+    border-color: $border-color;
+    border-width: 1px;
+    border-style: solid;
+    text-align: center;
+  }
+  input:focus {
+    outline: none;
+  }
+  .activeCell {
+    background-color: #d3dbf6;
+  }
+  .inActiveCell {
+    background: #eecac0;
+  }
+}
+
+.container {
+  width: max-content;
+}
+.container .row:nth-child(3n) {
+  border-bottom: solid 2px $border-color;
+}
+.container .row .form:nth-child(3n) {
+  border-right: solid 2px $border-color;
+}
+.container .row .form:first-child {
+  border-left: solid 2px $border-color;
+}
+.container .row:first-child {
+  border-top: solid 2px $border-color;
+}

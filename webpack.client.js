@@ -35,20 +35,20 @@ module.exports = (env, argv) => {
     devServer: {
       contentBase: path.join(__dirname, 'dist'),
       compress: true,
-      port: 4200,
+      port: 4220,
       watchContentBase: true,
       progress: true,
       hot: true,
       open: true,
       historyApiFallback: true,
-      proxy: {
-        '/api': 'http://localhost:3000',
-        '/api/streams': 'http://localhost:8080',
-      },
+      // proxy: {
+      //   '/api': 'http://localhost:3000',
+      //   '/api/streams': 'http://localhost:8080',
+      // },
     },
     resolve: config.resolve,
     module: {
-      rules: [config.modules.js, config.modules.sass, config.modules.img],
+      rules: [config.modules.js, config.modules.sass, config.modules.img, config.modules.css],
     },
     plugins: [
       new ESLintPlugin(),
