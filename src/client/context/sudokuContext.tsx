@@ -1,15 +1,22 @@
-import React, { useReducer } from 'react';
+import React, { useReducer, useContext } from 'react';
 import { createContext } from 'react';
 import { reducer } from '../hooks/reduce.hook';
-import { getSudoku } from '../helpers/sudoku';
+import { getSudoku, ISudoku } from '../helpers/sudoku';
 
-export const SudokuContext = createContext(null);
+export const SudokuContext = createContext<{
+  state: ISudoku[][];
+  dispatch: React.Dispatch<any>;
+}>(null);
 
 interface IProps {
   children: React.ReactNode;
 }
 
-export const SudokuProvider: React.FC<IProps> = ({ children }: IProps) => {
+export const useSudoku = () => {
+  return useContext(SudokuContext);
+};
+
+export const SudokuProvider: React.FC = ({ children }: IProps) => {
   const [state, dispatch] = useReducer(reducer, getSudoku());
-  return <SudokuContext.Provider value={{ state, dispatch }}>{children}</SudokuContext.Provider>;
+  return <SudokuContext.Provider value={{ state: state, dispatch: dispatch }}>{children}</SudokuContext.Provider>;
 };
