@@ -6,7 +6,6 @@ import '../css/index.scss';
 export const App = () => {
   return (
     <React.Fragment>
-      <h1 className="one">HELLO WORLD</h1>
       <StartGame />
     </React.Fragment>
   );

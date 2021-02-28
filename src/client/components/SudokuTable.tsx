@@ -3,7 +3,7 @@ import { Container, Row } from 'react-bootstrap';
 import { SudokuSection } from './SudokuSectiom';
 import { useSudoku } from '../context/sudokuContext';
 
-export const SudokuTable: FC = () => {
+const SudokuTableMemo: FC = () => {
   const { state } = useSudoku();
   console.log('TABLE');
 
@@ -21,3 +21,5 @@ export const SudokuTable: FC = () => {
     </Container>
   );
 };
+
+export const SudokuTable = React.memo(SudokuTableMemo);

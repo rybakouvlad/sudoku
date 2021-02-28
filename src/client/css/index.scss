@@ -42,3 +42,10 @@ body {
 .container .row:first-child {
   border-top: solid 2px $border-color;
 }
+
+.menu {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  text-align: center;
+}

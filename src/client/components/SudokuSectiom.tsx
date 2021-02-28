@@ -1,27 +1,31 @@
-import React, { FC, useContext, useState } from 'react';
+import React, { FC, useCallback, useContext, useState } from 'react';
 import { Col } from 'react-bootstrap';
 import { SudokuContext } from '../context/sudokuContext';
 import { ISudoku } from '../helpers/sudoku';
-
+import { useMove } from '../context/move.context';
 interface IRow {
   cell: ISudoku;
 }
 
-export const SudokuSection: FC<IRow> = (props: IRow) => {
+export const SS: FC<IRow> = (props: IRow) => {
+  console.log('CELL');
   const { dispatch } = useContext(SudokuContext);
   const [isActive, setIsActive] = useState(false);
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const { incrementMoves } = useMove();
+  const handleChange = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
     let value = parseInt(e.target.value, 10);
     if (isNaN(value)) {
       value = null;
     }
+    incrementMoves();
     dispatch({ type: 'change', payload: { cell: props.cell, value: value } });
-  };
+  }, []);
 
   const focusHandler = () => {
     dispatch({ type: 'active', payload: { cell: props.cell, focus: true } });
     setIsActive(true);
   };
+
   const blurHandler = () => {
     dispatch({ type: 'active', payload: { cell: props.cell, focus: false } });
     setIsActive(false);
@@ -42,3 +46,5 @@ export const SudokuSection: FC<IRow> = (props: IRow) => {
     </Col>
   );
 };
+
+export const SudokuSection = React.memo(SS);
