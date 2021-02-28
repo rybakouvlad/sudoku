@@ -5,7 +5,7 @@ import { SudokuTable } from './SudokuTable';
 import { Timer, actionTimer } from './Timer';
 
 export const StartGame: React.FC = () => {
-  const [isMenu, setIsMenu] = useState(false);
+  const [isMenu, setIsMenu] = useState(true);
   const [timer, setTimer] = useState(actionTimer.STOP);
 
   const changeMenuStatus = (status: boolean): void => {
@@ -18,9 +18,9 @@ export const StartGame: React.FC = () => {
 
   return (
     <>
-      {isMenu ? <SudokuTable /> : <MenuSudoku changeMenuStatus={changeMenuStatus} />}
+      {isMenu ? <MenuSudoku changeMenuStatus={changeMenuStatus} /> : <SudokuTable />}
       <Button variant="outline-success" onClick={() => setIsMenu(true)}>
-        Success
+        MENU
       </Button>
       <Timer action={timer} />
     </>

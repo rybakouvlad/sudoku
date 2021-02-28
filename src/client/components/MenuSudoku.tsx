@@ -7,8 +7,8 @@ interface IProps {
 
 export const MenuSudoku: React.FC<IProps> = (props: IProps) => {
   return (
-    <Button variant="outline-success" onClick={() => props.changeMenuStatus(true)}>
-      Success
+    <Button variant="outline-success" onClick={() => props.changeMenuStatus(false)}>
+      START GAME
     </Button>
   );
 };
