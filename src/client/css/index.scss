@@ -13,6 +13,8 @@ body {
     border-width: 1px;
     border-style: solid;
     text-align: center;
+    caret-color: transparent;
+    cursor: pointer;
   }
   input:focus {
     outline: none;

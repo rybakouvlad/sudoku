@@ -6,7 +6,7 @@ import { SudokuContext } from '../context/sudokuContext';
 import { reducer } from '../hooks/reduce.hook';
 export const SudokuTable: FC = () => {
   const [state, dispatch] = useReducer(reducer, getSudoku());
-
+  console.log('TABLE');
   return (
     <SudokuContext.Provider value={{ state, dispatch }}>
       <Container className="container">
