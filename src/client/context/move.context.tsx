@@ -22,8 +22,6 @@ export const MoveProvider: React.FC = ({ children }: IProps) => {
   const [moves, setMoves] = useState(0);
 
   const incrementMoves = () => {
-    console.log('kuku');
-
     setMoves((mv) => mv + 1);
   };
 

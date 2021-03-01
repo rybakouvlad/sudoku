@@ -17,7 +17,7 @@ export const Sudoku: React.FC<IProps> = (props: IProps) => {
     localStorage.setItem('game_time', timer.toString());
     localStorage.setItem('game_moves', moves.toString());
     localStorage.setItem('game_data', JSON.stringify(state));
-  }, [moves]);
+  }, [timer]);
 
   const callMenu = (): void => {
     props.setIsMenu(true);

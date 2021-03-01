@@ -4,6 +4,8 @@ import { useGame } from '../hooks/game.hook';
 import { useSudoku } from '../context/sudokuContext';
 import { useMove } from '../context/move.context';
 import { Spinner } from 'react-bootstrap';
+import { useAuth } from '../context/auth.context';
+import { Sounds } from './Sounds';
 interface IProps {
   changeMenuStatus(status: boolean): void;
 }
@@ -12,24 +14,25 @@ export const MenuSudoku: React.FC<IProps> = (props: IProps) => {
   const { handleStart, handleResume, handleReset, setTimer } = useGame();
   const { dispatch } = useSudoku();
   const { setMoves } = useMove();
+  const { isLocal, setIsLocal } = useAuth();
   const [isLoading, setIsLoading] = useState(true);
   const [isNew, setIsNew] = useState(false);
-  console.log('MENU');
 
   const checkLocal = useCallback(() => {
-    if (localStorage.getItem('game_time') && isLoading) {
+    if (isLocal) {
       setTimer(parseInt(localStorage.getItem('game_time')));
       setMoves(parseInt(localStorage.getItem('game_moves')));
       dispatch({ type: 'set', payload: JSON.parse(localStorage.getItem('game_data')) });
+      setIsLocal((loc) => !loc);
       setIsLoading(false);
+      resumeGame();
     }
     setIsLoading(false);
-  }, []);
+  }, [isLocal]);
 
   useEffect(() => {
     checkLocal();
-    console.log('kuku');
-  }, [checkLocal]);
+  }, [isLocal]);
 
   const newGame = (): void => {
     if (isNew) {
@@ -65,7 +68,8 @@ export const MenuSudoku: React.FC<IProps> = (props: IProps) => {
           <Button variant="outline-success" onClick={resumeGame}>
             RESUME GAME
           </Button>
-          <h1>Music</h1>
+
+          <Sounds />
           <h1>Sounds</h1>
         </ButtonGroup>
       </div>

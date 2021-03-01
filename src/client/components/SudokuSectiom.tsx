@@ -3,6 +3,7 @@ import { Col } from 'react-bootstrap';
 import { SudokuContext } from '../context/sudokuContext';
 import { ISudoku } from '../helpers/sudoku';
 import { useMove } from '../context/move.context';
+import { useSounds } from '../context/sounds.context';
 interface IRow {
   cell: ISudoku;
 }
@@ -12,16 +13,20 @@ export const SS: FC<IRow> = (props: IRow) => {
   const { dispatch } = useContext(SudokuContext);
   const [isActive, setIsActive] = useState(false);
   const { incrementMoves } = useMove();
+  const { soundPlay } = useSounds();
+
   const handleChange = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
     let value = parseInt(e.target.value, 10);
     if (isNaN(value)) {
       value = null;
     }
+
     incrementMoves();
     dispatch({ type: 'change', payload: { cell: props.cell, value: value } });
   }, []);
 
   const focusHandler = () => {
+    soundPlay();
     dispatch({ type: 'active', payload: { cell: props.cell, focus: true } });
     setIsActive(true);
   };

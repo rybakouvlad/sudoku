@@ -1,12 +1,18 @@
 import React from 'react';
 import { StartGame } from '../components/StartGame';
+import { AuthProvider } from '../context/auth.context';
+import { SoundsProvider } from '../context/sounds.context';
 // import '../css/index.css';
 import '../css/index.scss';
 
 export const App = () => {
   return (
-    <React.Fragment>
-      <StartGame />
-    </React.Fragment>
+    <AuthProvider>
+      <SoundsProvider>
+        <React.Fragment>
+          <StartGame />
+        </React.Fragment>
+      </SoundsProvider>
+    </AuthProvider>
   );
 };
