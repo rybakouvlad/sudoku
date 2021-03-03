@@ -99,12 +99,17 @@ external_mongoose_default().connect(URL, {
     useCreateIndex: true,
 });
 
+;// CONCATENATED MODULE: external "cors"
+const external_cors_namespaceObject = require("cors");;
+var external_cors_default = /*#__PURE__*/__webpack_require__.n(external_cors_namespaceObject);
 ;// CONCATENATED MODULE: ./src/server/Server.tsx
+
 
 
 
 const port = 3000;
 const server = external_express_default()();
+server.use(external_cors_default()());
 server.use(external_express_default().json());
 server.use('/api/result', result_route);
 server.listen(port, () => console.log(`Listening on port ${port}`));

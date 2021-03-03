@@ -10,7 +10,7 @@ interface IRow {
 
 export const SS: FC<IRow> = (props: IRow) => {
   console.log('CELL');
-  const { dispatch } = useContext(SudokuContext);
+  const { dispatch, setActive } = useContext(SudokuContext);
   const [isActive, setIsActive] = useState(false);
   const { incrementMoves } = useMove();
   const { soundPlay } = useSounds();
@@ -27,6 +27,7 @@ export const SS: FC<IRow> = (props: IRow) => {
 
   const focusHandler = () => {
     soundPlay();
+    setActive({ x: props.cell.col, y: props.cell.row });
     dispatch({ type: 'active', payload: { cell: props.cell, focus: true } });
     setIsActive(true);
   };
@@ -39,7 +40,11 @@ export const SS: FC<IRow> = (props: IRow) => {
   return (
     <Col className="form">
       <input
-        style={{ backgroundColor: isActive ? '#6f88c4' : null, color: props.cell.isReadOnly ? '#2b241f' : null }}
+        style={{
+          backgroundColor: isActive ? '#6f88c4' : null,
+          color: props.cell.isReadOnly ? '#2b241f' : null,
+          fontWeight: props.cell.isReadOnly ? 700 : 400,
+        }}
         className={`${props.cell.isActive ? 'activeCell' : 'inActiveCell'}`}
         maxLength={1}
         value={props.cell.value ? props.cell.value : ''}

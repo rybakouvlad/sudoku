@@ -2,13 +2,15 @@ $border-color: #1b3865;
 
 body {
   background-color: #d99886;
+  padding-top: 20px;
 }
 
 .form {
   flex-grow: 0;
   padding: 0;
   input {
-    width: 30px;
+    width: 4.5vw;
+    height: 4.5vw;
     border-color: $border-color;
     border-width: 1px;
     border-style: solid;
@@ -48,4 +50,29 @@ body {
   display: flex;
   justify-content: center;
   text-align: center;
+  h1 {
+    align-self: center;
+  }
+}
+
+.sudoku_wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  h1 {
+    text-align: center;
+  }
+  .score {
+    display: flex;
+    width: 36vw;
+    justify-content: space-between;
+    margin-bottom: 10px;
+  }
+  .group_buttons {
+    display: flex;
+    width: 36vw;
+    justify-content: space-evenly;
+    margin-top: 10px;
+  }
 }

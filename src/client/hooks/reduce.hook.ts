@@ -6,6 +6,8 @@ export const actionTypeSudoku = {
   CHANGE: 'change',
   ACTIVE: 'active',
   SET: 'set',
+  HELP: 'help',
+  SHOW_ALL: 'show-all',
 };
 
 export const reducer = (state: ISudoku[][], action: any) => {
@@ -19,6 +21,11 @@ export const reducer = (state: ISudoku[][], action: any) => {
     if (action.type === actionTypeSudoku.SET) {
       return action.payload;
     }
+    if (action.type === actionTypeSudoku.HELP) {
+      console.log('kuku');
+      produce[action.payload.y][action.payload.x].value = produce[action.payload.y][action.payload.x].tryValue;
+      produce[action.payload.y][action.payload.x].isReadOnly = true;
+    }
     if (action.type === actionTypeSudoku.ACTIVE) {
       // Подумать над всеми одинаковыми цифрами
       for (let i = 0; i < 9; i++) {
@@ -30,6 +37,14 @@ export const reducer = (state: ISudoku[][], action: any) => {
           if (element.section === action.payload.cell.section) {
             element.isActive = action.payload.focus;
           }
+        });
+      });
+    }
+    if (action.type === actionTypeSudoku.SHOW_ALL) {
+      produce.map((el) => {
+        el.map((element) => {
+          element.value = element.tryValue;
+          element.isReadOnly = true;
         });
       });
     }

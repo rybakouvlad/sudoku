@@ -1,38 +1,38 @@
-import React, { Dispatch, SetStateAction, useEffect } from 'react';
+import React, { Dispatch, SetStateAction } from 'react';
 import { Button } from 'react-bootstrap';
 import { SudokuTable } from './SudokuTable';
-import { Timer } from './Timer';
-import { useGame } from '../hooks/game.hook';
-import { useMove } from '../context/move.context';
 import { useSudoku } from '../context/sudokuContext';
+import { useGame } from '../hooks/game.hook';
+import { Score } from './Score';
+
 interface IProps {
   setIsMenu: Dispatch<SetStateAction<boolean>>;
 }
 
 export const Sudoku: React.FC<IProps> = (props: IProps) => {
-  const { handlePause, timer } = useGame();
-  const { moves } = useMove();
-  const { state } = useSudoku();
-  useEffect(() => {
-    localStorage.setItem('game_time', timer.toString());
-    localStorage.setItem('game_moves', moves.toString());
-    localStorage.setItem('game_data', JSON.stringify(state));
-  }, [timer]);
-
+  const { handlePause } = useGame();
+  const { getHelp, getAll } = useSudoku();
   const callMenu = (): void => {
     props.setIsMenu(true);
     handlePause();
   };
 
   return (
-    <>
+    <div className="sudoku_wrapper">
       <h1>SUDOKU</h1>
+      <Score />
       <SudokuTable />
-      <Button variant="outline-success" onClick={callMenu}>
-        MENU
-      </Button>
-      <Timer timer={timer} />
-      <h1>{`Moves:${moves}`} </h1>
-    </>
+      <div className="group_buttons">
+        <Button variant="outline-success" onClick={callMenu}>
+          MENU
+        </Button>
+        <Button variant="outline-success" onClick={getHelp}>
+          GET HELP
+        </Button>
+        <Button variant="outline-success" onClick={getAll}>
+          GET ALL
+        </Button>
+      </div>
+    </div>
   );
 };
