@@ -12,6 +12,8 @@ export const SudokuContext = createContext<{
   setActive: React.Dispatch<IPosition>;
   getHelp(): void;
   getAll(): void;
+  checkSolution(): boolean;
+  checkMoves(): boolean;
 }>(null);
 
 interface IPosition {
@@ -47,7 +49,17 @@ export const SudokuProvider: React.FC = ({ children }: IProps) => {
     dispatch({ type: 'show-all' });
   };
 
+  const checkMoves = () => {
+    return state.every((el: ISudoku[]) => el.every((element) => element.isReadOnly === true));
+  };
+
+  const checkSolution = (): boolean => {
+    return state.every((el: ISudoku[]) => el.every((element) => element.value == element.tryValue));
+  };
+
   return (
-    <SudokuContext.Provider value={{ state, dispatch, active, setActive, getHelp, getAll }}>{children}</SudokuContext.Provider>
+    <SudokuContext.Provider value={{ state, dispatch, active, setActive, getHelp, getAll, checkSolution, checkMoves }}>
+      {children}
+    </SudokuContext.Provider>
   );
 };
