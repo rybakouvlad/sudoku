@@ -17,12 +17,11 @@ export const TableResult: React.FC<IProps> = (props: IProps) => {
 
   const getResults = async () => {
     try {
-      const response = await axios.get('http://localhost:3000/api/result/get');
-      console.log(response);
+      const response = await axios.get('http://178.124.178.250:3030/api/result/get');
 
       setTableResul(
         response.data.sort((a: ITable, b: ITable) => {
-          return b.moves - a.moves;
+          return a.time - b.time;
         }),
       );
     } catch (error) {}
@@ -38,29 +37,33 @@ export const TableResult: React.FC<IProps> = (props: IProps) => {
 
   return (
     <>
-      <Button onClick={menuHandler}>Back</Button>
-      <Table striped bordered hover>
-        <thead>
-          <tr>
-            <th>#</th>
-            <th>Name</th>
-            <th>Time</th>
-            <th>Moves</th>
-          </tr>
-        </thead>
-        <tbody>
-          {tableResult.map((el, index) => {
-            return (
-              <tr key={index}>
-                <td>{index + 1}</td>
-                <td>{el.name}</td>
-                <td>{getTimes(el.time)}</td>
-                <td>{el.moves}</td>
-              </tr>
-            );
-          })}
-        </tbody>
-      </Table>
+      <Button className="ml-3 mb-3" onClick={menuHandler}>
+        Back
+      </Button>
+      <div className="table-wrapper">
+        <Table striped bordered hover>
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Name</th>
+              <th>Time</th>
+              <th>Moves</th>
+            </tr>
+          </thead>
+          <tbody>
+            {tableResult.map((el, index) => {
+              return (
+                <tr key={index}>
+                  <td>{index + 1}</td>
+                  <td>{el.name}</td>
+                  <td>{getTimes(el.time)}</td>
+                  <td>{el.moves}</td>
+                </tr>
+              );
+            })}
+          </tbody>
+        </Table>
+      </div>
     </>
   );
 };

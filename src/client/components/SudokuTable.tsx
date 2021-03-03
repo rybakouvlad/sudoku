@@ -5,7 +5,6 @@ import { useSudoku } from '../context/sudokuContext';
 
 const SudokuTableMemo: FC = () => {
   const { state } = useSudoku();
-  console.log('TABLE');
 
   return (
     <Container className="container">

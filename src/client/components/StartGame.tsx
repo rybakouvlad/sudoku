@@ -7,7 +7,6 @@ import { MoveProvider } from '../context/move.context';
 
 export const StartGame: React.FC = () => {
   const [isMenu, setIsMenu] = useState(true);
-  console.log('STARTGAME');
 
   const changeMenuStatus = (status: boolean): void => {
     setIsMenu(status);

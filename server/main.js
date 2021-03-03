@@ -107,7 +107,7 @@ var external_cors_default = /*#__PURE__*/__webpack_require__.n(external_cors_nam
 
 
 
-const port = 3000;
+const port = 3030;
 const server = external_express_default()();
 server.use(external_cors_default()());
 server.use(external_express_default().json());

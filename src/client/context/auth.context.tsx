@@ -19,8 +19,6 @@ export const AuthProvider: React.FC = ({ children }: IProps) => {
   const [isLocal, setIsLocal] = useState(false);
   useEffect(() => {
     if (localStorage.getItem('game_time')) {
-      console.log('TRYEEE');
-
       setIsLocal(true);
     }
   }, []);

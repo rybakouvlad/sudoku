@@ -24,6 +24,7 @@ export const MenuButtons: React.FC<IProps> = (props: IProps) => {
       setTimer(parseInt(localStorage.getItem('game_time')));
       setMoves(parseInt(localStorage.getItem('game_moves')));
       dispatch({ type: 'set', payload: JSON.parse(localStorage.getItem('game_data')) });
+      dispatch({ type: 'clear' });
       setIsLocal((loc) => !loc);
       setIsLoading(false);
       resumeGame();

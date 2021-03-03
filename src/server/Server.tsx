@@ -3,7 +3,7 @@ import resultRoutes from './routes/result.route';
 import './utils/mongodb';
 import cors from 'cors';
 
-const port = 3000;
+const port = 3030;
 const server = express();
 
 server.use(cors());

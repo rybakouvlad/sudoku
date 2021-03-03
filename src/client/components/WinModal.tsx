@@ -9,16 +9,12 @@ export const WinModal: React.FC = () => {
   const { moves } = useMove();
   const { timer } = useGame();
   const submitHandler = async () => {
-    console.log(moves);
-    console.log(timer);
-    console.log(name);
     try {
-      const response = await axios.post('http://localhost:3000/api/result/set', {
+      const response = await axios.post('http://178.124.178.250:3030/api/result/set', {
         name: name,
         moves: moves,
         time: timer,
       });
-      console.log(response);
     } catch (error) {}
     setName('');
   };

@@ -8,6 +8,7 @@ export const actionTypeSudoku = {
   SET: 'set',
   HELP: 'help',
   SHOW_ALL: 'show-all',
+  CLEAR: 'clear',
 };
 
 export const reducer = (state: ISudoku[][], action: any) => {
@@ -20,6 +21,9 @@ export const reducer = (state: ISudoku[][], action: any) => {
     }
     if (action.type === actionTypeSudoku.SET) {
       return action.payload;
+    }
+    if (action.type === actionTypeSudoku.CLEAR) {
+      produce.map((row: ISudoku[]) => row.map((cell) => (cell.isActive = false)));
     }
     if (action.type === actionTypeSudoku.HELP) {
       console.log('kuku');

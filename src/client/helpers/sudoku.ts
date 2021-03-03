@@ -19,8 +19,8 @@ export const getSudoku = (): Array<Array<ISudoku>> => {
   const resultSudoku = sudoku;
   const start = resultSudoku.makepuzzle();
   const final = resultSudoku.solvepuzzle(start);
-  console.log(sudoku.ratepuzzle(start, 1));
   const result = [];
+
   for (let i = 0; i < 9; i++) {
     const row: Array<ISudoku> = [];
     for (let n = 0; n < 9; n++) {

@@ -9,7 +9,6 @@ interface IRow {
 }
 
 export const SS: FC<IRow> = (props: IRow) => {
-  console.log('CELL');
   const { dispatch, setActive } = useContext(SudokuContext);
   const [isActive, setIsActive] = useState(false);
   const { incrementMoves } = useMove();
